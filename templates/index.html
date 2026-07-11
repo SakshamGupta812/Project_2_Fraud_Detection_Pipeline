@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FraudShield AI | Fraud Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            FraudShield<span>AI</span>
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            AI Model Active
+        </div>
+    </nav>
+
+
+    <main class="hero">
+
+        <section class="hero-content">
+
+            <div class="badge">
+                MACHINE LEARNING FRAUD DETECTION
+            </div>
+
+            <h1>
+                Detect Financial Fraud
+                <span>Before It Strikes.</span>
+            </h1>
+
+            <p class="hero-description">
+                Analyze financial transactions using a tuned
+                Random Forest machine learning pipeline trained
+                to identify suspicious transaction patterns.
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+                    <h3>SMOTE</h3>
+                    <p>Imbalanced data handling</p>
+                </div>
+
+                <div class="feature">
+                    <h3>0.9733</h3>
+                    <p>ROC-AUC Score</p>
+                </div>
+
+                <div class="feature">
+                    <h3>Random Forest</h3>
+                    <p>Selected ML Model</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="upload-card">
+
+            <div class="card-header">
+                <h2>Transaction Scanner</h2>
+
+                <p>
+                    Upload a transaction dataset to analyze
+                    potential fraudulent activity.
+                </p>
+            </div>
+
+
+            <form action="/predict"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <label class="upload-box">
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h3>Upload Transaction CSV</h3>
+
+                    <p>
+                        Click to select your transaction dataset
+                    </p>
+
+                    <input type="file"
+                           name="file"
+                           accept=".csv"
+                           required>
+
+                </label>
+
+
+                <button type="submit">
+                    Analyze Transactions
+                </button>
+
+            </form>
+
+
+            <div class="security-note">
+                🔒 Transactions are processed locally by the ML pipeline.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            FraudShield AI • Machine Learning Fraud Detection Pipeline
+        </p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fraud Analysis Results | FraudShield AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        FraudShield<span>AI</span>
+    </div>
+
+    <a href="/" class="back-link">
+        ← Analyze New Dataset
+    </a>
+</nav>
+
+
+<main class="results-container">
+
+    <div class="results-header">
+        <div class="badge">ANALYSIS COMPLETE</div>
+
+        <h1>Fraud Detection Results</h1>
+
+        <p>
+            Machine learning analysis of uploaded transaction data.
+        </p>
+    </div>
+
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+            <p>Total Transactions</p>
+            <h2>{{ total_transactions }}</h2>
+        </div>
+
+        <div class="stat-card fraud-card">
+            <p>Fraud Detected</p>
+            <h2>{{ fraud_count }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Legitimate</p>
+            <h2>{{ legitimate_count }}</h2>
+        </div>
+
+        <div class="stat-card risk-card">
+            <p>Fraud Rate</p>
+            <h2>{{ fraud_percentage }}%</h2>
+        </div>
+
+    </section>
+
+
+    <section class="table-card">
+
+        <div class="table-header">
+            <h2>Transaction Analysis</h2>
+
+            <p>
+                Showing first 100 analyzed transactions
+            </p>
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Transaction</th>
+                        <th>Amount</th>
+                        <th>Fraud Probability</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for row in results %}
+
+                    <tr>
+
+                        <td>#{{ loop.index }}</td>
+
+                        <td>
+                            ${{ "%.2f"|format(row.Amount) }}
+                        </td>
+
+                        <td>
+                            {{ "%.2f"|format(row.Fraud_Probability * 100) }}%
+                        </td>
+
+                        <td>
+
+                            {% if row.Prediction == 1 %}
+
+                            <span class="fraud-status">
+                                Fraud
+                            </span>
+
+                            {% else %}
+
+                            <span class="safe-status">
+                                Legitimate
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>
+        FraudShield AI • Random Forest Fraud Detection Pipeline
+    </p>
+</footer>
+
+</body>
+
+</html>
